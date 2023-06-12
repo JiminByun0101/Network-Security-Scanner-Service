@@ -48,20 +48,20 @@ mvn clean spring-boot:run
 
 4. Kafka 이벤트 모니터링
 
-### Kafka 서버에 접속
+- Kafka 서버에 접속
 
 ```
 cd kafka
 docker-compose exec -it kafka /bin/bash   # kafka docker container 내부 shell 로 진입
 ```
 
-### Kafka 토픽 목록 조회 (Topic name : networksecurityscannerservice)
+- Kafka 토픽 목록 조회 (Topic name : networksecurityscannerservice)
 
 ```
 ./kafka-topics --bootstrap-server http://localhost:9092 --list #
 ```
 
-### Consumer 실행하여 퍼블리시된 이벤트 모니터링
+- Consumer 실행하여 퍼블리시된 이벤트 모니터링
 
 ```
 ./kafka-console-consumer --bootstrap-server http://localhost:9092 --topic networksecurityscannerservice --from-beginning
@@ -86,14 +86,14 @@ http :8082/scanRequests/{id}/cancelscan
 
 7. Kubernetes(EKS) Provisioning on AWS
 
-### Prerequisite
+- Prerequisite
 
-- Install aws cli
-- Install kubectl cli
-- Configure the aws cli (using aws configure)
-- Create EKS
+* - Install aws cli
+* - Install kubectl cli
+* - Configure the aws cli (using aws configure)
+* - Create EKS
 
-### Kubernetes cluster connect and test
+- Kubernetes cluster connect and test
 
 ```
 aws eks --region us-east-1 update-kubeconfig --name network-security-scanner-service-eks
