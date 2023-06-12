@@ -36,6 +36,12 @@ public class OpenSourceIntegration {
         ScanExecuted scanExecuted = new ScanExecuted(this);
         scanExecuted.publishAfterCommit();
 
+        // ScanCancelled scanCancelled = new ScanCancelled(this);
+        // scanCancelled.publishAfterCommit();
+    }
+
+    @PreRemove
+    public void onPreRemove(){
         ScanCancelled scanCancelled = new ScanCancelled(this);
         scanCancelled.publishAfterCommit();
     }
@@ -74,6 +80,10 @@ public class OpenSourceIntegration {
     }
 
     public static void cancelScan(ScanCancelled scanCancelled) {
+        OpenSourceIntegration openSourceIntegration = repository().findByScanId(String.valueOf(orderCanceled.getId()))
+            .orElseThrow(() -> new EntityNotFoundException("Entity does not found.!!"));
+
+        repository().delete(delivery);
         //implement business logic here:
 
         /** Example 1:  new item 
