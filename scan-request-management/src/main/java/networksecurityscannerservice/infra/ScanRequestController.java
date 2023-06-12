@@ -38,7 +38,7 @@ public class ScanRequestController {
 
     @RequestMapping(
         value = "scanRequests/{id}/cancelscan",
-        method = RequestMethod.PUT,
+        method = RequestMethod.DELETE,
         produces = "application/json;charset=UTF-8"
     )
     public ScanRequest cancelScan(
