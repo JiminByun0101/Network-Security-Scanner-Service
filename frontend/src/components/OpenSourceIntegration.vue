@@ -23,6 +23,7 @@
             <String label="Result" v-model="value.result" :editMode="editMode"/>
             <String label="IpAddress" v-model="value.ipAddress" :editMode="editMode"/>
             <String label="Hostname" v-model="value.hostname" :editMode="editMode"/>
+            <String label="ScanRequestId" v-model="value.scanRequestId" :editMode="editMode"/>
         </v-card-text>
 
         <v-card-actions>

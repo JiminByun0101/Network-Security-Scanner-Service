@@ -74,6 +74,7 @@
                 'result': '',
                 'ipAddress': '',
                 'hostname': '',
+                'scanRequestId': '',
             }
         },
         methods:{
