@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: scan-request-management
+  labels:
+    app: scan-request-management
+spec:
+  ports:
+    - port: 8080
+      targetPort: 8080
+  selector:
+    app: scan-request-management

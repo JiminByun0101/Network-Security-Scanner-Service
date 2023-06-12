@@ -1,0 +1,66 @@
+server:
+  port: 8088
+
+---
+
+spring:
+  profiles: default
+  cloud:
+    gateway:
+      routes:
+        - id: scan-request-management
+          uri: http://localhost:8082
+          predicates:
+            - Path=/scanRequests/**, 
+        - id: open-source-integration-tools
+          uri: http://localhost:8083
+          predicates:
+            - Path=/openSourceIntegrations/**, 
+        - id: frontend
+          uri: http://localhost:8080
+          predicates:
+            - Path=/**
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins:
+              - "*"
+            allowedMethods:
+              - "*"
+            allowedHeaders:
+              - "*"
+            allowCredentials: true
+
+
+---
+
+spring:
+  profiles: docker
+  cloud:
+    gateway:
+      routes:
+        - id: scan-request-management
+          uri: http://scanRequestManagement:8080
+          predicates:
+            - Path=/scanRequests/**, 
+        - id: open-source-integration-tools
+          uri: http://openSourceIntegrationTools:8080
+          predicates:
+            - Path=/openSourceIntegrations/**, 
+        - id: frontend
+          uri: http://frontend:8080
+          predicates:
+            - Path=/**
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins:
+              - "*"
+            allowedMethods:
+              - "*"
+            allowedHeaders:
+              - "*"
+            allowCredentials: true
+
+server:
+  port: 8080

@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: open-source-integration-tools
+  labels:
+    app: open-source-integration-tools
+spec:
+  ports:
+    - port: 8080
+      targetPort: 8080
+  selector:
+    app: open-source-integration-tools
