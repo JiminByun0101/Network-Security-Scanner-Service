@@ -16,6 +16,7 @@
                             
                             
                             
+                            
                         </v-list-item-title>
 
                         <v-list-item-subtitle style="font-size:25px; font-weight:700;">
@@ -26,6 +27,7 @@
                             [ Result :  {{data.result }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             [ IpAddress :  {{data.ipAddress }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             [ Hostname :  {{data.hostname }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            [ ScanRequestId :  {{data.scanRequestId }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         </v-list-item-subtitle>
 
                     </v-list-item-content>
@@ -113,6 +115,7 @@
                 'result': '',
                 'ipAddress': '',
                 'hostname': '',
+                'scanRequestId': '',
             }
         },
         methods: {

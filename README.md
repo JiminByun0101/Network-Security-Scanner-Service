@@ -37,7 +37,7 @@ mvn spring-boot:run
 ```
 - open-source-integration-tools
 ```
- http :8088/openSourceIntegrations ToolName="ToolName" Description="Description" Version="Version" Id="Id" Result="Result" IpAddress="IpAddress" Hostname="Hostname" 
+ http :8088/openSourceIntegrations ToolName="ToolName" Description="Description" Version="Version" Id="Id" Result="Result" IpAddress="IpAddress" Hostname="Hostname" ScanRequestId="ScanRequestId" 
 ```
 
 

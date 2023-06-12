@@ -32,6 +32,9 @@
                             <v-list-item-subtitle>
                                 Hostname :  {{item.hostname }}
                             </v-list-item-subtitle>
+                            <v-list-item-subtitle>
+                                ScanRequestId :  {{item.scanRequestId }}
+                            </v-list-item-subtitle>
                         </v-list-item-content>
 
                         <v-list-item-action>
@@ -89,6 +92,8 @@
                     
                     
                     obj['id'] = arr[4]; 
+                    
+                    
                     
                     
                     

@@ -73,6 +73,7 @@
                     { text: "result", value: "result" },
                     { text: "ipAddress", value: "ipAddress" },
                     { text: "hostname", value: "hostname" },
+                    { text: "scanRequestId", value: "scanRequestId" },
                 ],
             openSourceIntegration : [],
             newValue: {},
@@ -96,6 +97,7 @@
                 'result': '',
                 'ipAddress': '',
                 'hostname': '',
+                'scanRequestId': '',
             }
         },
         methods: {

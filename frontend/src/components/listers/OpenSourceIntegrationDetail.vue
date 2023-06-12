@@ -23,6 +23,9 @@
             <div>
                 <String label="Hostname" v-model="item.hostname" :editMode="editMode" @change="change" />
             </div>
+            <div>
+                <String label="ScanRequestId" v-model="item.scanRequestId" :editMode="editMode" @change="change" />
+            </div>
         </v-card-text>
 
         <v-card-actions>

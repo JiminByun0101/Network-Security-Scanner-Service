@@ -29,6 +29,8 @@ public class OpenSourceIntegration {
 
     private String hostname;
 
+    private String scanRequestId;
+
     @PostPersist
     public void onPostPersist() {
         ScanExecuted scanExecuted = new ScanExecuted(this);
