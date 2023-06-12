@@ -1,6 +1,8 @@
 package networksecurityscannerservice.domain;
 
 import networksecurityscannerservice.domain.*;
+import java.util.Optional;
+
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
@@ -9,4 +11,6 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
     path = "openSourceIntegrations"
 )
 public interface OpenSourceIntegrationRepository
-    extends PagingAndSortingRepository<OpenSourceIntegration, Integer> {}
+    extends PagingAndSortingRepository<OpenSourceIntegration, Integer> {
+        Optional<OpenSourceIntegration> findByScanRequestId(String scanRequestId);
+    }
