@@ -17,6 +17,8 @@ public class ScanRequestController {
 
     @Autowired
     ScanRequestRepository scanRequestRepository;
+    InitiateScanCommand initiateScanCommand;
+    CancelScanCommand cancelScanCommand;
 
     @RequestMapping(
         value = "scanRequests/",
@@ -29,7 +31,7 @@ public class ScanRequestController {
         @RequestBody ScanRequest scanRequest
     ) throws Exception {
         System.out.println("##### /scanRequest/initiateScan  called #####");
-        scanRequest.initiateScan(initiateScancommand);
+        scanRequest.initiateScan(initiateScanCommand);
         scanRequestRepository.save(scanRequest);
         return scanRequest;
     }
