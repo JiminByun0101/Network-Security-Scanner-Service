@@ -82,7 +82,28 @@ http :8082/scanRequests/{id}/cancelscan
 - ScanCanceled
   도메인 이벤트가 Publish됨을 확인한다.
 
-7.
+![image](https://github.com/JiminByun0101/network-security-scanner-service/assets/111392426/16a4cd51-5fa9-40c6-9370-2901482fd8b4)
+
+7. Kubernetes(EKS) Provisioning on AWS
+
+### Prerequisite
+
+- Install aws cli
+- Install kubectl cli
+- Configure the aws cli (using aws configure)
+- Create EKS
+
+### Kubernetes cluster connect and test
+
+```
+aws eks --region us-east-1 update-kubeconfig --name network-security-scanner-service-eks
+kubectl get all
+kubectl get node
+```
+
+![image](https://github.com/JiminByun0101/network-security-scanner-service/assets/111392426/a2c767f1-990e-4ed7-b6ad-8f87dd8c7875)
+
+8.
 
 ### Order Microservice 실행
 
