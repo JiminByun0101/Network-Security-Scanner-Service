@@ -22,7 +22,7 @@
 
 ![image](https://github.com/JiminByun0101/network-security-scanner-service/assets/111392426/2f06456e-b8b4-4ffe-ac64-9239fd059f8a)
 
-## 운영
+## 로컬 테스트
 
 1. 분산 메시지 큐 Kafka를 실행
 
@@ -84,14 +84,17 @@ http :8082/scanRequests/{id}/cancelscan
 
 ![image](https://github.com/JiminByun0101/network-security-scanner-service/assets/111392426/16a4cd51-5fa9-40c6-9370-2901482fd8b4)
 
-7. Kubernetes(EKS) Provisioning on AWS
+## 운영
+
+1. Kubernetes(EKS) Provisioning on AWS
 
 - Prerequisite
 
-* - Install aws cli
-* - Install kubectl cli
-* - Configure the aws cli (using aws configure)
-* - Create EKS
+  - Install aws cli
+  - Install kubectl cli
+  - Install Helm (Kubernetes package installer)
+  - Configure the aws cli (using aws configure)
+  - Create EKS
 
 - Kubernetes cluster connect and test
 
@@ -103,38 +106,50 @@ kubectl get node
 
 ![image](https://github.com/JiminByun0101/network-security-scanner-service/assets/111392426/a2c767f1-990e-4ed7-b6ad-8f87dd8c7875)
 
-8.
+2. Docker Image build and push to the Docker Hub (Registry)
 
-### Order Microservice 실행
-
-- 새로운 Terminal을 연다.
+- Scan Request Management Build
 
 ```
-cd 06강_Sample-Order-Microservice
-mvn spring-boot:run
+cd scan-request-management
+mvn package
+docker image build -t jiminb/scan-request-management:v0.1 .
+docker login
+docker push jiminb/scan-request-management:v0.1
 ```
 
-```
-http GET http://localhost:8081
-http GET http://localhost:8081/orders
-http POST http://localhost:8081/orders customerId=1000 productId=1000 productName=TV qty=10
-http GET http://localhost:8081/orders
-http DELETE http://localhost:8081/orders/1
-http GET http://localhost:8081/orders
-```
-
-### Command로 인해 Publish된 Domain Events 확인
-
-- Kafka consumer 접속 및 mall Topic 조회
+- Open-source Tool Integration Build
 
 ```
-docker-compose exec -it kafka /bin/bash   # kafka docker container 내부 shell 로 진입
-[appuser@e23fbf89f899 bin]$ cd /bin
-[appuser@e23fbf89f899 bin]$ ./kafka-console-consumer --bootstrap-server localhost:9092 --topic mall --from-beginning
+cd open-source-integration-tools
+mvn package
+docker image build -t jiminb/open-source-integration-tools:v0.1 .
+docker login
+docker push jiminb/open-source-integration-tools:v0.1
 ```
 
-## 구현
+3. 쿠버네티스에 마이크로서비스 배포
 
-1. `docker-compose`를 실행하여 Kafka 서버를 실행한다.
-2. 각 마이크로서비스를 실행하기 위해 Maven을 실행한다.
-3. `httpie`를 사용하여 간단한 HTTP GET 및 POST 테스트를 수행한다.
+- Scan Request Management 배포
+
+```
+cd scan-request-management/kubernetes
+kubectl apply -f deployment.yaml
+kubectl apply -f service.yaml
+```
+
+- Open-source Tool Integration 배포
+
+```
+cd open-source-integration-tools/kubernetes
+kubectl apply -f deployment.yaml
+kubectl apply -f service.yaml
+```
+
+4. Install Kafka in the target Kubernetes Cluster
+
+```
+helm repo add bitnami https://charts.bitnami.com/bitnami
+helm repo update
+helm install network-s3-kafka bitnami/kafka
+```
