@@ -153,3 +153,6 @@ helm repo add bitnami https://charts.bitnami.com/bitnami
 helm repo update
 helm install network-s3-kafka bitnami/kafka
 ```
+
+5. Check Resources in Kubernetes
+   ![image](https://github.com/JiminByun0101/network-security-scanner-service/assets/111392426/85375837-a4e0-46a7-a8be-9e8bf904eeac)
